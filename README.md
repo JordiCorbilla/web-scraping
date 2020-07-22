@@ -16,7 +16,7 @@ In our case, we found [this](https://family.disney.com/articles/1000-most-popula
 
 ![](https://github.com/JordiCorbilla/web-scraping/raw/master/baby-names.png)
 
-To get the list of names on a usable format using python, we can use the BeautifulSoup library and locate the specific tags we want. The code below shows how this can be done:
+To get the list of names on a usable format using python, we can use the BeautifulSoup library and locate the specific tags we want (ol and then li, and print the content of it). The code below shows how this can be done:
 
 ```python
 # Let's create a random user name generator using web scraping.
@@ -57,7 +57,7 @@ for name in list_names:
 
 ## 3) Complex Example
 
-
+One of the most interesting uses for this technology is the ability to download larges amounts of data that are table based. This example tries to download the balance sheet from one of the stocks in Yahoo Finance. Imagine that we want to download the balance sheet of TSLA (if you want to download the data, you need to become a premium subscriber and they have made it difficult to perform web scraping). To perform this operation, we need to look at the way the table is created (a bunch of div tags) and how each row is composed (classes, ids) so they are easily identifiable. 
 
 
 
