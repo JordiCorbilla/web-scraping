@@ -37,6 +37,8 @@ list_names = list.find_all('li')
 for name in list_names:
     print(name.get_text())
     
+# Generate the following sequence 
+# abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!()@$^&*[]
 chars = string.ascii_letters + string.digits + '!()@$^&*[]'
 random.seed = (os.urandom(1024))
 
