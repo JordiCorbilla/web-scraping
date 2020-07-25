@@ -59,7 +59,7 @@ for name in list_names:
 
 One of the most interesting uses for this technology is the ability to download larges amounts of data that are table based. This example tries to download the balance sheet from one of the stocks in Yahoo Finance. Imagine that we want to download the balance sheet of TSLA (if you want to download the data, you need to become a premium subscriber and they have made it difficult to perform web scraping). To perform this operation, we need to look at the way the table is created (a bunch of div tags) and how each row is composed (classes, ids) so they are easily identifiable. 
 
-
+Balance Sheet: https://www.marketwatch.com/investing/stock/tsla/financials/balance-sheet
 
 
 
