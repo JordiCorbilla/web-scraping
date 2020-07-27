@@ -61,6 +61,25 @@ One of the most interesting uses for this technology is the ability to download 
 
 Balance Sheet: https://www.marketwatch.com/investing/stock/tsla/financials/balance-sheet
 
+```python
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
 
+ticker = 'tsla'
+
+# Download Balance Sheet table from TSLA
+url = 'https://www.marketwatch.com/investing/stock/' + ticker + '/financials/balance-sheet'
+page = requests.get(url)
+content = page.content
+soup = BeautifulSoup(content, 'html.parser')
+
+main_content = soup.find_all('table', class_='crDataTable')
+for table in main_content:
+    rows = table.find_all("tr")
+    for row in rows:
+        print(row.get_text(separator='|').split('|')[1])
+        print(row.get_text(separator='|').split('|')[6])
+```
 
 
