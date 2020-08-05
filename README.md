@@ -75,13 +75,15 @@ soup = BeautifulSoup(content, 'html.parser')
 
 cash_balance = {}
 
+# Search for the main DIV that encloses the balance sheet table
 main_content = soup.find_all('div', class_='M(0) Whs(n) BdEnd Bdc($seperatorColor) D(itb)')
 for div in main_content:
-    #print(div)
+    # Look for each DIV that encloses every single row
     sub_div = div.find_all('div', class_='D(tbr) fi-row Bgc($hoverBgColor):h')
     for sub in sub_div:
+        # Select the first column as the index of our dictionary and select the second column as the data to store (2019)
         cash_balance[sub.get_text(separator="|").split("|")[0]] = sub.get_text(separator="|").split("|")[1]
-        print(sub.get_text())
+        #print(sub.get_text())
 ```
 
 The final result of the execution of the code above lets us produce the desired output, scraping the data from the Yahoo Finance page for the TSLA ticker:
