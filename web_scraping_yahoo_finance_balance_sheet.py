@@ -24,9 +24,14 @@ page = requests.get(url)
 content = page.content
 soup = BeautifulSoup(content, 'html.parser')
 
-main_content = soup.find_all('div', class_='W(100%) Whs(nw) Ovx(a) BdT Bdtc($seperatorColor)')
+cash_balance = {}
+
+main_content = soup.find_all('div', class_='M(0) Whs(n) BdEnd Bdc($seperatorColor) D(itb)')
 for div in main_content:
     #print(div)
-    sub_div = div.find_all('div', class_='D(tbc) Ta(start) Pend(15px)--mv2 Pend(10px) Bxz(bb) Py(8px) Bdends(s) Bdbs(s) Bdstarts(s) Bdstartw(1px) Bdbw(1px) Bdendw(1px) Bdc($seperatorColor) Pos(st) Start(0) Bgc($lv2BgColor) fi-row:h_Bgc($hoverBgColor) Pstart(15px)--mv2 Pstart(10px)')
+    sub_div = div.find_all('div', class_='D(tbr) fi-row Bgc($hoverBgColor):h')
     for sub in sub_div:
+        cash_balance[sub.get_text(separator="|").split("|")[0]] = sub.get_text(separator="|").split("|")[1]
         print(sub.get_text())
+       
+      
