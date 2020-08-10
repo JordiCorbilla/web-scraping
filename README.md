@@ -8,7 +8,7 @@ Web scraping scripts to extract financial data. In a nutshell, this method can h
 pip install beautifulsoup4
 ```
 
-## 2) Simple Example
+## 2) Simple Example (scraping names)
 
 The following script example tries to generate random user names via web scraping. Firstly, we locate a website that contains a list of name that we can download and then we use this list to generate user names. To do this, we can browse for any of the top 1000 girl names and see any of the links available:
 
@@ -55,7 +55,7 @@ for name in list_names:
 
 ![](https://github.com/JordiCorbilla/web-scraping/raw/master/list-usernames-scraping.png)
 
-## 3) Complex Example
+## 3) Complex Example (scraping financial information)
 
 One of the most interesting uses for this technology is the ability to download larges amounts of data that are table based. This example tries to download the balance sheet from one of the stocks in Yahoo Finance. Imagine that we want to download the balance sheet of TSLA (if you want to download the data, you need to become a premium subscriber and they have made it difficult to perform web scraping). To perform this operation, we need to look at the way the table is created (a bunch of div tags) and how each row is composed (classes, ids) so they are easily identifiable. 
 
