@@ -14,7 +14,7 @@ The following script example tries to generate random user names via web scrapin
 
 In our case, we found [this](https://family.disney.com/articles/1000-most-popular-girl-names/) url which seems pretty good for what we need. Upon inspecting the names, we can see that the DOM is pretty straightforward and each name is placed under 'li' tags and the whole group under an 'ol' tag:
 
-![](https://github.com/JordiCorbilla/web-scraping/raw/master/baby-names.png)
+![](baby-names.png)
 
 To get the list of names on a usable format using python, we can use the BeautifulSoup library and locate the specific tags we want (ol and then li, and print the content of it). The code below shows how this can be done:
 
@@ -36,7 +36,7 @@ for name in list_names:
     print(name.get_text())
 ```
 
-![](https://github.com/JordiCorbilla/web-scraping/raw/master/list-names-scraping.png)
+![](list-names-scraping.png)
 
 With a little tweak, we can easily generate usernames based on this data or whatever you want to do with it.
 
@@ -53,7 +53,7 @@ for name in list_names:
     print(username)
 ```
 
-![](https://github.com/JordiCorbilla/web-scraping/raw/master/list-usernames-scraping.png)
+![](list-usernames-scraping.png)
 
 ## 3) Complex Example (scraping financial information)
 
@@ -61,7 +61,7 @@ One of the most interesting uses for this technology is the ability to download 
 
 Balance Sheet: https://finance.yahoo.com/quote/TSLA/balance-sheet?p=TSLA&_guc_consent_skip=1596652371
 
-![](https://github.com/JordiCorbilla/web-scraping/raw/master/balancesheet.png)
+![](balancesheet.png)
 
 ```python
 import requests
@@ -88,5 +88,5 @@ for div in main_content:
 
 The final result of the execution of the code above lets us produce the desired output, scraping the data from the Yahoo Finance page for the TSLA ticker:
 
-![](https://github.com/JordiCorbilla/web-scraping/raw/master/balancesheetdictionary.png)
+![](balancesheetdictionary.png)
 
