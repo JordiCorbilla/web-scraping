@@ -6,6 +6,21 @@ Web scraping scripts to extract financial data. In a nutshell, this method can h
 
 ```cmd
 pip install beautifulsoup4
+or
+python -m pip install beautifulsoup4
+```
+
+Output:
+
+```bash
+python -m pip install beautifulsoup4
+Collecting beautifulsoup4
+  Downloading beautifulsoup4-4.9.3-py3-none-any.whl (115 kB)
+     |████████████████████████████████| 115 kB 3.3 MB/s
+Collecting soupsieve>1.2; python_version >= "3.0"
+  Downloading soupsieve-2.2-py3-none-any.whl (33 kB)
+Installing collected packages: soupsieve, beautifulsoup4
+Successfully installed beautifulsoup4-4.9.3 soupsieve-2.2
 ```
 
 ## 2) Simple Example (scraping names)
