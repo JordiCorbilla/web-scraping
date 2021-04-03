@@ -238,7 +238,7 @@ C:\Users\thund\Source\Repos\web-scraping>docker build -t web_scraping:v1 .
  => => naming to docker.io/library/web_scraping:v1                                                                 0.0s
 ```
 
-Run the image:
+## Run the docker image
 
 ```bash
 C:\WINDOWS\system32>docker run -it --rm -p 5000:5000 web_scraping:v1
@@ -264,3 +264,8 @@ C:\WINDOWS\system32>docker rmi -f 791b2aef33a3
 Untagged: web_scraping:v1
 Deleted: sha256:791b2aef33a3641f7335102f7b8edeab2463b5e4eed046594cd5053c86a9c1f0
 ```
+
+# Running your Docker image in Kubernetes
+
+To make things a bit interesting, we are going to deploy the docker image into a Kubernetes cluster. To do this, we will need to create the configuration files for the deployment and the service.
+
