@@ -188,6 +188,7 @@ CMD [ "python", "./web_scraping_yahoo_finance_balance_sheet_server.py" ]
 Include the packages to be installed as part of the docker image creation (`web_scraping_packages.txt`):
 
 ```bash
+requests==2.22.0
 beautifulsoup4==4.7.1 
 Flask==1.1.1
 ```
@@ -196,13 +197,13 @@ Create the image:
 
 ```bash
 C:\Users\thund\Source\Repos\web-scraping>docker build -t web_scraping:v1 .
-[+] Building 476.0s (4/9)
+[+] Building 547.8s (10/10) FINISHED
  => [internal] load build definition from Dockerfile                                                               0.0s
  => => transferring dockerfile: 526B                                                                               0.0s
  => [internal] load .dockerignore                                                                                  0.0s
  => => transferring context: 2B                                                                                    0.0s
  => [internal] load metadata for docker.io/library/python:3.7                                                     42.6s
- => [1/5] FROM docker.io/library/python:3.7@sha256:8b3d5242ba72ac32785362c4ade75b61ce941bd454f8e1c585270736c991  433.1s
+ => [1/5] FROM docker.io/library/python:3.7@sha256:8b3d5242ba72ac32785362c4ade75b61ce941bd454f8e1c585270736c991  495.1s
  => => resolve docker.io/library/python:3.7@sha256:8b3d5242ba72ac32785362c4ade75b61ce941bd454f8e1c585270736c9916f  0.0s
  => => sha256:8b3d5242ba72ac32785362c4ade75b61ce941bd454f8e1c585270736c9916fe6 1.86kB / 1.86kB                     0.0s
  => => sha256:581b9e21ee31fd842281d787d150f92ff8850be52ab00ba7ad75f3167cb397a4 9.04kB / 9.04kB                     0.0s
@@ -211,7 +212,7 @@ C:\Users\thund\Source\Repos\web-scraping>docker build -t web_scraping:v1 .
  => => sha256:004f1eed87df3f75f5e2a1a649fa7edd7f713d1300532fd0909bb39cd48437d7 50.43MB / 50.43MB                 232.4s
  => => sha256:5d6f1e8117dbb1c6a57603cb4f321a861a08105a81bcc6b01b0ec2b78c8523a5 7.83MB / 7.83MB                    23.8s
  => => sha256:234b70d0479d7f16d7ee8d04e4ffdacc57d7d14313faf59d332f18b2e9418743 51.84MB / 51.84MB                 263.6s
- => => sha256:6fa07a00e2f029c4b2c7f177a2b696f1b3510040cde4f5bb06ddbca98e7fbf76 154.14MB / 192.35MB               433.1s
+ => => sha256:6fa07a00e2f029c4b2c7f177a2b696f1b3510040cde4f5bb06ddbca98e7fbf76 192.35MB / 192.35MB               479.7s
  => => sha256:04a31b4508b8e95fb3cb25486c4068185054895b12e0611e386a002ee9c0e07c 6.15MB / 6.15MB                   268.2s
  => => extracting sha256:004f1eed87df3f75f5e2a1a649fa7edd7f713d1300532fd0909bb39cd48437d7                          7.7s
  => => extracting sha256:5d6f1e8117dbb1c6a57603cb4f321a861a08105a81bcc6b01b0ec2b78c8523a5                          0.9s
@@ -220,6 +221,32 @@ C:\Users\thund\Source\Repos\web-scraping>docker build -t web_scraping:v1 .
  => => extracting sha256:234b70d0479d7f16d7ee8d04e4ffdacc57d7d14313faf59d332f18b2e9418743                          5.3s
  => => sha256:9d4af2d5ba9c3e8e735b90ee7041e6bb0d8a21d8e816a0ed781c4feca39d6da1 233B / 233B                       276.2s
  => => sha256:dc46d185ff1dbb7fd44a2d045b44e3c8edeec432507a2c7712ff6d31bf802aec 2.17MB / 2.17MB                   284.0s
+ => => extracting sha256:6fa07a00e2f029c4b2c7f177a2b696f1b3510040cde4f5bb06ddbca98e7fbf76                         12.2s
+ => => extracting sha256:04a31b4508b8e95fb3cb25486c4068185054895b12e0611e386a002ee9c0e07c                          0.5s
+ => => extracting sha256:9039bc4ee433b9b3917b5a7506b20c4335921059058fb626f21c10942f68bf1d                          1.1s
+ => => extracting sha256:9d4af2d5ba9c3e8e735b90ee7041e6bb0d8a21d8e816a0ed781c4feca39d6da1                          0.0s
+ => => extracting sha256:dc46d185ff1dbb7fd44a2d045b44e3c8edeec432507a2c7712ff6d31bf802aec                          0.3s
  => [internal] load build context                                                                                  0.1s
  => => transferring context: 2.12kB                                                                                0.0s
+ => [2/5] WORKDIR /code                                                                                            1.4s
+ => [3/5] COPY web_scraping_packages.txt .                                                                         0.1s
+ => [4/5] RUN pip install -r web_scraping_packages.txt                                                             7.9s
+ => [5/5] COPY web_scraping_yahoo_finance_balance_sheet_server.py .                                                0.1s
+ => exporting to image                                                                                             0.3s
+ => => exporting layers                                                                                            0.3s
+ => => writing image sha256:d36f971bc093676c0d91b95308e1a3097aff29de5b55c4cb912e7903cc60b49e                       0.0s
+ => => naming to docker.io/library/web_scraping:v1                                                                 0.0s
+```
+
+Run the image:
+
+```bash
+C:\WINDOWS\system32>docker run -it --rm -p 5000:5000 web_scraping:v1
+ * Serving Flask app "web_scraping_yahoo_finance_balance_sheet_server" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+172.17.0.1 - - [03/Apr/2021 17:14:13] "GET / HTTP/1.1" 200 -
 ```
