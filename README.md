@@ -143,7 +143,7 @@ if __name__ == "__main__":
    server.run(host='0.0.0.0')
 ```
 
-If we run this code and try to get to `http://localhost:500`, we'll get the following response:
+If we run this code and try to get to `http://localhost:5000`, we'll get the following response:
 
 ```json
 {"Capital Lease Obligations":"1,540,000","Common Stock Equity":"22,225,000","Invested Capital":"33,964,000","Net Debt":"-","Net Tangible Assets":"21,705,000","Ordinary Shares Number":"960,000","Share Issued":"960,000","Tangible Book Value":"21,705,000","Total Assets":"52,148,000","Total Capitalization":"31,832,000","Total Debt":"13,279,000","Total Equity Gross Minority Interest":"23,075,000","Total Liabilities Net Minority Interest":"29,073,000","Working Capital":"12,469,000"}
@@ -251,7 +251,9 @@ C:\WINDOWS\system32>docker run -it --rm -p 5000:5000 web_scraping:v1
 172.17.0.1 - - [03/Apr/2021 17:14:13] "GET / HTTP/1.1" 200 -
 ```
 
-If you don't want to use the image anymore, use the following to delete it
+If you browse `http://localhost:5000`, you'll get the content of it in json format.
+
+Once you are done, If you don't want to use the image anymore, use the following to delete it:
 
 ```bash
 C:\WINDOWS\system32>docker images
