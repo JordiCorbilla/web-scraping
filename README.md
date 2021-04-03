@@ -269,5 +269,61 @@ Deleted: sha256:791b2aef33a3641f7335102f7b8edeab2463b5e4eed046594cd5053c86a9c1f0
 
 # Running your Docker image in Kubernetes
 
+** Remember to enable Kubernetes if you are using Docker desktop on windows:
+![image](https://user-images.githubusercontent.com/7347994/113489788-114eb500-94be-11eb-9448-32d60b80b266.png)
+
+
 To make things a bit interesting, we are going to deploy the docker image into a Kubernetes cluster. To do this, we will need to create the configuration files for the deployment and the service.
 
+Deployment:
+
+```yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web_scraping_deployment
+spec:
+  selector:
+    matchLabels:
+      app: web_scraping_pod
+  template:
+    metadata:
+      labels:
+        app: web_scraping_pod
+    spec:
+      containers:
+      - name: web_scraping_container
+        image: web_scraping:v1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5000
+```
+
+Service:
+
+```yml
+apiVersion: v1
+kind: Service
+metadata:
+  name: web_scraping_service
+spec:
+  selector:
+    app: web_scraping_pod
+  ports:
+  - port: 5000
+    targetPort: 5000
+  type: LoadBalancer
+```
+
+Then run the following:
+
+```bash
+C:\Source\Repos\web-scraping>kubectl config get-contexts
+CURRENT   NAME                 CLUSTER          AUTHINFO         NAMESPACE
+*         docker-desktop       docker-desktop   docker-desktop
+          docker-for-desktop   docker-desktop   docker-desktop
+          minikube             minikube         minikube
+```
