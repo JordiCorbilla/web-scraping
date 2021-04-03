@@ -163,3 +163,63 @@ runfile('C:/Users/thund/Source/Repos/web-scraping/web_scraping_yahoo_finance_bal
 127.0.0.1 - - [03/Apr/2021 16:00:03] "GET /favicon.ico HTTP/1.1" 404 -
 ```
 
+## Preparing the docker file
+
+```docker
+# set base image (host OS)
+FROM python:3.7
+
+# set the working directory in the container
+WORKDIR /code
+
+# copy the dependencies file to the working directory
+COPY web_scraping_packages.txt .
+
+# install dependencies
+RUN pip install -r web_scraping_packages.txt
+
+# copy the script to the working directory
+COPY web_scraping_yahoo_finance_balance_sheet_server.py .
+
+# command to run on container start
+CMD [ "python", "./web_scraping_yahoo_finance_balance_sheet_server.py" ]
+```
+
+Include the packages to be installed as part of the docker image creation (`web_scraping_packages.txt`):
+
+```bash
+beautifulsoup4==4.7.1 
+Flask==1.1.1
+```
+
+Create the image:
+
+```bash
+C:\Users\thund\Source\Repos\web-scraping>docker build -t web_scraping:v1 .
+[+] Building 476.0s (4/9)
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 526B                                                                               0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/python:3.7                                                     42.6s
+ => [1/5] FROM docker.io/library/python:3.7@sha256:8b3d5242ba72ac32785362c4ade75b61ce941bd454f8e1c585270736c991  433.1s
+ => => resolve docker.io/library/python:3.7@sha256:8b3d5242ba72ac32785362c4ade75b61ce941bd454f8e1c585270736c9916f  0.0s
+ => => sha256:8b3d5242ba72ac32785362c4ade75b61ce941bd454f8e1c585270736c9916fe6 1.86kB / 1.86kB                     0.0s
+ => => sha256:581b9e21ee31fd842281d787d150f92ff8850be52ab00ba7ad75f3167cb397a4 9.04kB / 9.04kB                     0.0s
+ => => sha256:48c2faf66abec3dce9f54d6722ff592fce6dd4fb58a0d0b72282936c6598a3b3 10.00MB / 10.00MB                  50.9s
+ => => sha256:b161a84f5d6d6a1588a3fbea618c464e0599094524a09b689cb3f455fbf33344 2.22kB / 2.22kB                     0.0s
+ => => sha256:004f1eed87df3f75f5e2a1a649fa7edd7f713d1300532fd0909bb39cd48437d7 50.43MB / 50.43MB                 232.4s
+ => => sha256:5d6f1e8117dbb1c6a57603cb4f321a861a08105a81bcc6b01b0ec2b78c8523a5 7.83MB / 7.83MB                    23.8s
+ => => sha256:234b70d0479d7f16d7ee8d04e4ffdacc57d7d14313faf59d332f18b2e9418743 51.84MB / 51.84MB                 263.6s
+ => => sha256:6fa07a00e2f029c4b2c7f177a2b696f1b3510040cde4f5bb06ddbca98e7fbf76 154.14MB / 192.35MB               433.1s
+ => => sha256:04a31b4508b8e95fb3cb25486c4068185054895b12e0611e386a002ee9c0e07c 6.15MB / 6.15MB                   268.2s
+ => => extracting sha256:004f1eed87df3f75f5e2a1a649fa7edd7f713d1300532fd0909bb39cd48437d7                          7.7s
+ => => extracting sha256:5d6f1e8117dbb1c6a57603cb4f321a861a08105a81bcc6b01b0ec2b78c8523a5                          0.9s
+ => => extracting sha256:48c2faf66abec3dce9f54d6722ff592fce6dd4fb58a0d0b72282936c6598a3b3                          0.9s
+ => => sha256:9039bc4ee433b9b3917b5a7506b20c4335921059058fb626f21c10942f68bf1d 16.33MB / 16.33MB                 326.7s
+ => => extracting sha256:234b70d0479d7f16d7ee8d04e4ffdacc57d7d14313faf59d332f18b2e9418743                          5.3s
+ => => sha256:9d4af2d5ba9c3e8e735b90ee7041e6bb0d8a21d8e816a0ed781c4feca39d6da1 233B / 233B                       276.2s
+ => => sha256:dc46d185ff1dbb7fd44a2d045b44e3c8edeec432507a2c7712ff6d31bf802aec 2.17MB / 2.17MB                   284.0s
+ => [internal] load build context                                                                                  0.1s
+ => => transferring context: 2.12kB                                                                                0.0s
+```
