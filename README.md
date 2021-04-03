@@ -238,6 +238,8 @@ C:\Users\thund\Source\Repos\web-scraping>docker build -t web_scraping:v1 .
  => => naming to docker.io/library/web_scraping:v1                                                                 0.0s
 ```
 
+![image](https://user-images.githubusercontent.com/7347994/113489653-5cb49380-94bd-11eb-96c6-efcfac1c8812.png)
+
 ## Run the docker image
 
 ```bash
