@@ -35,5 +35,7 @@ for div in main_content:
         # Select the first column as the index of our dictionary and select the second column as the data to store (2019)
         cash_balance[sub.get_text(separator="|").split("|")[0]] = sub.get_text(separator="|").split("|")[1]
         #print(sub.get_text())
-       
+        
+for key,value in cash_balance.items():
+	print(key, ':', value)       
       
