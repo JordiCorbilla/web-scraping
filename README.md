@@ -250,3 +250,15 @@ C:\WINDOWS\system32>docker run -it --rm -p 5000:5000 web_scraping:v1
  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 172.17.0.1 - - [03/Apr/2021 17:14:13] "GET / HTTP/1.1" 200 -
 ```
+
+If you don't want to use the image anymore, use the following to delete it
+
+```bash
+C:\WINDOWS\system32>docker images
+REPOSITORY     TAG       IMAGE ID       CREATED          SIZE
+web_scraping   v1        791b2aef33a3   19 minutes ago   890MB
+
+C:\WINDOWS\system32>docker rmi -f 791b2aef33a3
+Untagged: web_scraping:v1
+Deleted: sha256:791b2aef33a3641f7335102f7b8edeab2463b5e4eed046594cd5053c86a9c1f0
+```
