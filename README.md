@@ -105,3 +105,61 @@ The final result of the execution of the code above lets us produce the desired 
 
 ![](balancesheetdictionary.png)
 
+# Containeraizing the script
+
+In order to make the script easily deployable, we'll create a Flask service that will host the retrieval of the cash balances and it will be all contained into a docker image. 
+
+## Create the Flask service
+
+```python
+import requests
+from bs4 import BeautifulSoup
+from flask import Flask, jsonify
+server = Flask(__name__)
+
+@server.route("/")
+def cash_balance_get():
+     # Download Balance Sheet table from TSLA
+    url = 'https://finance.yahoo.com/quote/TSLA/balance-sheet?p=TSLA'
+    page = requests.get(url)
+    content = page.content
+    soup = BeautifulSoup(content, 'html.parser')
+    
+    cash_balance = {}
+    
+    # Search for the main DIV that encloses the balance sheet table
+    main_content = soup.find_all('div', class_='M(0) Whs(n) BdEnd Bdc($seperatorColor) D(itb)')
+    for div in main_content:
+        # Look for each DIV that encloses every single row
+        sub_div = div.find_all('div', class_='D(tbr) fi-row Bgc($hoverBgColor):h')
+        for sub in sub_div:
+            # Select the first column as the index of our dictionary and select the second column as the data to store (2019)
+            cash_balance[sub.get_text(separator="|").split("|")[0]] = sub.get_text(separator="|").split("|")[1]
+            #print(sub.get_text())
+            
+    return jsonify(cash_balance)
+
+if __name__ == "__main__":
+   server.run(host='0.0.0.0')
+```
+
+If we run this code and try to get to `http://localhost:500`, we'll get the following response:
+
+```json
+{"Capital Lease Obligations":"1,540,000","Common Stock Equity":"22,225,000","Invested Capital":"33,964,000","Net Debt":"-","Net Tangible Assets":"21,705,000","Ordinary Shares Number":"960,000","Share Issued":"960,000","Tangible Book Value":"21,705,000","Total Assets":"52,148,000","Total Capitalization":"31,832,000","Total Debt":"13,279,000","Total Equity Gross Minority Interest":"23,075,000","Total Liabilities Net Minority Interest":"29,073,000","Working Capital":"12,469,000"}
+```
+
+The output of the execution can be seen below:
+
+```bash
+runfile('C:/Users/thund/Source/Repos/web-scraping/web_scraping_yahoo_finance_balance_sheet_server.py', wdir='C:/Users/thund/Source/Repos/web-scraping')
+ * Serving Flask app "web_scraping_yahoo_finance_balance_sheet_server" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+127.0.0.1 - - [03/Apr/2021 16:00:03] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [03/Apr/2021 16:00:03] "GET /favicon.ico HTTP/1.1" 404 -
+```
+
