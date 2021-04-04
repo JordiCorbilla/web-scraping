@@ -105,11 +105,11 @@ The final result of the execution of the code above lets us produce the desired 
 
 ![](balancesheetdictionary.png)
 
-# Containeraizing the script
+# Containeraizing the script with Docker and Kubernetes
 
 In order to make the script easily deployable, we'll create a Flask service that will host the retrieval of the cash balances and it will be all contained into a docker image. 
 
-## Create the Flask service
+## 1) Create the Flask service
 
 ```python
 import requests
@@ -163,7 +163,7 @@ runfile('C:/Users/thund/Source/Repos/web-scraping/web_scraping_yahoo_finance_bal
 127.0.0.1 - - [03/Apr/2021 16:00:03] "GET /favicon.ico HTTP/1.1" 404 -
 ```
 
-## Preparing the docker file
+## 2) Preparing the docker file
 
 ```docker
 # set base image (host OS)
@@ -240,7 +240,7 @@ C:\Users\thund\Source\Repos\web-scraping>docker build -t web-scraping:v1 .
 
 ![image](https://user-images.githubusercontent.com/7347994/113489653-5cb49380-94bd-11eb-96c6-efcfac1c8812.png)
 
-## Run the docker image
+## 3) Running the docker image
 
 ```bash
 C:\WINDOWS\system32>docker run -it --rm -p 5000:5000 web-scraping:v1
