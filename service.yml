@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: web_scraping_service
+  name: web-scraping-service
 spec:
   selector:
-    app: web_scraping_pod
+    app: web-scraping-pod
   ports:
   - port: 5000
     targetPort: 5000
