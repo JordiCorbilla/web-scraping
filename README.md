@@ -281,19 +281,19 @@ Deployment:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web-scraping-_deployment
+  name: web-scraping-deployment
 spec:
   selector:
     matchLabels:
-      app: web_scraping_pod
+      app: web-scraping-pod
   template:
     metadata:
       labels:
-        app: web_scraping_pod
+        app: web-scraping-pod
     spec:
       containers:
-      - name: web_scraping_container
-        image: web_scraping:v1
+      - name: web-scraping-container
+        image: web-scraping:v1
         resources:
           limits:
             memory: "128Mi"
@@ -308,10 +308,10 @@ Service:
 apiVersion: v1
 kind: Service
 metadata:
-  name: web_scraping_service
+  name: web-scraping-service
 spec:
   selector:
-    app: web_scraping_pod
+    app: web-scraping-pod
   ports:
   - port: 5000
     targetPort: 5000
