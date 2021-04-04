@@ -327,3 +327,8 @@ CURRENT   NAME                 CLUSTER          AUTHINFO         NAMESPACE
           docker-for-desktop   docker-desktop   docker-desktop
           minikube             minikube         minikube
 ```
+
+```bash
+C:\Source\Repos\web-scraping>kubectl apply -f .\deployment.yml
+deployment.apps/web-scraping-deployment created
+```
