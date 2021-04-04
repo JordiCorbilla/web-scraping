@@ -196,7 +196,7 @@ Flask==1.1.1
 Create the image:
 
 ```bash
-C:\Users\thund\Source\Repos\web-scraping>docker build -t web_scraping:v1 .
+C:\Users\thund\Source\Repos\web-scraping>docker build -t web-scraping:v1 .
 [+] Building 547.8s (10/10) FINISHED
  => [internal] load build definition from Dockerfile                                                               0.0s
  => => transferring dockerfile: 526B                                                                               0.0s
@@ -235,7 +235,7 @@ C:\Users\thund\Source\Repos\web-scraping>docker build -t web_scraping:v1 .
  => exporting to image                                                                                             0.3s
  => => exporting layers                                                                                            0.3s
  => => writing image sha256:d36f971bc093676c0d91b95308e1a3097aff29de5b55c4cb912e7903cc60b49e                       0.0s
- => => naming to docker.io/library/web_scraping:v1                                                                 0.0s
+ => => naming to docker.io/library/web-scraping:v1                                                                 0.0s
 ```
 
 ![image](https://user-images.githubusercontent.com/7347994/113489653-5cb49380-94bd-11eb-96c6-efcfac1c8812.png)
@@ -243,7 +243,7 @@ C:\Users\thund\Source\Repos\web-scraping>docker build -t web_scraping:v1 .
 ## Run the docker image
 
 ```bash
-C:\WINDOWS\system32>docker run -it --rm -p 5000:5000 web_scraping:v1
+C:\WINDOWS\system32>docker run -it --rm -p 5000:5000 web-scraping:v1
  * Serving Flask app "web_scraping_yahoo_finance_balance_sheet_server" (lazy loading)
  * Environment: production
    WARNING: This is a development server. Do not use it in a production deployment.
@@ -260,10 +260,10 @@ Once you are done, If you don't want to use the image anymore, use the following
 ```bash
 C:\WINDOWS\system32>docker images
 REPOSITORY     TAG       IMAGE ID       CREATED          SIZE
-web_scraping   v1        791b2aef33a3   19 minutes ago   890MB
+web-scraping   v1        791b2aef33a3   19 minutes ago   890MB
 
 C:\WINDOWS\system32>docker rmi -f 791b2aef33a3
-Untagged: web_scraping:v1
+Untagged: web-scraping:v1
 Deleted: sha256:791b2aef33a3641f7335102f7b8edeab2463b5e4eed046594cd5053c86a9c1f0
 ```
 
@@ -281,7 +281,7 @@ Deployment:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web_scraping_deployment
+  name: web-scraping-_deployment
 spec:
   selector:
     matchLabels:
