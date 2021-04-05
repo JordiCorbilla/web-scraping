@@ -345,4 +345,9 @@ kubernetes             ClusterIP      10.96.0.1     <none>        443/TCP       
 web-scraping-service   LoadBalancer   10.98.0.224   localhost     5000:32024/TCP   9s
 ```
 
+You should be able to see the following containers running in Docker:
+
+![image](https://user-images.githubusercontent.com/7347994/113612655-09bb1780-9648-11eb-94f6-6cd3f1211639.png)
+
+
 After this, we will be able to see the content of it on `http://localhost:5000`
