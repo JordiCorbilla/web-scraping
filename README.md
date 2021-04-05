@@ -1,4 +1,4 @@
-# Web scraping with Python 3.7, Docker and Kubernetes
+# Web scraping with Python 3.7, Docker, and Kubernetes
 
 Web scraping scripts to extract financial data. In a nutshell, this method can help you to get any information that it's available on any website using the [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/) library and python. The idea is to use this library to parse any DOM and get the data that we are interested in. Getting data from a list for example is a very simple job. Things get more interesting when we want to download more complex data like a table.
 
@@ -105,7 +105,7 @@ The final result of the execution of the code above lets us produce the desired 
 
 ![](balancesheetdictionary.png)
 
-# Containeraizing the script with Docker and Kubernetes
+# Containerizing the script with Docker and Kubernetes
 
 In order to make the script easily deployable, we'll create a Flask service that will host the retrieval of the cash balances and it will be all contained into a docker image. 
 
