@@ -351,3 +351,5 @@ You should be able to see the following containers running in Docker:
 
 
 After this, we will be able to see the content of it on `http://localhost:5000`
+
+![image](https://user-images.githubusercontent.com/7347994/113613036-89e17d00-9648-11eb-98b5-f52bd533d102.png)
