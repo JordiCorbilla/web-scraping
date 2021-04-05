@@ -196,7 +196,7 @@ Flask==1.1.1
 Create the image:
 
 ```bash
-C:\Users\thund\Source\Repos\web-scraping>docker build -t web-scraping:v1 .
+C:\Source\Repos\web-scraping>docker build -t web-scraping:v1 .
 [+] Building 547.8s (10/10) FINISHED
  => [internal] load build definition from Dockerfile                                                               0.0s
  => => transferring dockerfile: 526B                                                                               0.0s
@@ -329,6 +329,20 @@ CURRENT   NAME                 CLUSTER          AUTHINFO         NAMESPACE
 ```
 
 ```bash
-C:\Source\Repos\web-scraping>kubectl apply -f .\deployment.yml
+C:\Users\thund\Source\Repos\web-scraping>kubectl apply -f .\deployment.yml
 deployment.apps/web-scraping-deployment created
+
+C:\Users\thund\Source\Repos\web-scraping>kubectl get deployments
+NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+web-scraping-deployment   1/1     1            1           26s
+
+C:\Users\thund\Source\Repos\web-scraping>kubectl apply -f .\service.yml
+service/web-scraping-service created
+
+C:\Users\thund\Source\Repos\web-scraping>kubectl get services
+NAME                   TYPE           CLUSTER-IP    EXTERNAL-IP   PORT(S)          AGE
+kubernetes             ClusterIP      10.96.0.1     <none>        443/TCP          8h
+web-scraping-service   LoadBalancer   10.98.0.224   localhost     5000:32024/TCP   9s
 ```
+
+After this, we will be able to see the content of it on `http://localhost:5000`
